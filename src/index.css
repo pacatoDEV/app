@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand: var(--brand, #005dfa);
+  --color-brand-hover: color-mix(in srgb, var(--brand, #005dfa) 80%, black);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+:root {
+  --brand: #4f46e5; /* Indigo 600 */
+  --brand-hover: #4338ca;
+  --bg: #f8fafc; /* Slate 50 */
+  --panel: #ffffff;
+  --panel-border: #e2e8f0; /* Slate 200 */
+  --text: #0f172a; /* Slate 900 */
+  --muted: #64748b; /* Slate 500 */
+  --field-bg: #f1f5f9; /* Slate 100 */
+  --field-border: #e2e8f0;
+}
+
+[data-theme='dark'] {
+  --bg: #020617;
+  --panel: #0f172a;
+  --panel-border: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --field-bg: #1e293b;
+  --field-border: #334155;
+}
+
+@layer base {
+  body {
+    @apply bg-[var(--bg)] text-[var(--text)] font-sans antialiased;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[var(--panel-border)] rounded-full hover:bg-[var(--muted)];
+  }
+}
+
+.glass {
+  @apply bg-[var(--panel)]/80 backdrop-blur-md border border-[var(--panel-border)];
+}
+
+.input-style {
+  @apply w-full px-4 py-2.5 bg-[var(--field-bg)] border border-[var(--field-border)] rounded-xl 
+         text-[var(--text)] outline-none transition-all focus:border-brand focus:ring-4 focus:ring-brand/10;
+}
+
+.btn-primary {
+  @apply px-5 py-2.5 bg-brand text-white font-bold rounded-xl transition-all 
+         hover:bg-brand-hover hover:shadow-lg hover:shadow-brand/20 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2;
+}
+
+.btn-secondary {
+  @apply px-5 py-2.5 bg-[var(--panel)] border border-[var(--panel-border)] text-[var(--text)] font-bold rounded-xl 
+         transition-all hover:bg-[var(--field-bg)] active:scale-95 shadow-sm flex items-center justify-center gap-2;
+}
+
+.btn-danger {
+  @apply px-5 py-2.5 bg-red-50 text-red-600 border border-red-100 font-bold rounded-xl transition-all 
+         hover:bg-red-600 hover:text-white active:scale-95 flex items-center justify-center gap-2;
+}
+
+.card-style {
+  @apply bg-[var(--panel)] border border-[var(--panel-border)] rounded-3xl p-6 shadow-sm ring-1 ring-black/5;
+}
